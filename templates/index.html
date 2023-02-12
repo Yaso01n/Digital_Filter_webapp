@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../static/assets/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../static/assets/css/style.css" />
+  <script src="../static/assets/js/bootstrap.bundle.min.js"></script>
+  <script src="../static/assets/js/jquery-3.6.0.min.js"></script>
+  <script src="../static/assets/js/plotly-2.8.3.min.js"></script>
+  <title> Digital Filter</title>
+  <link rel="icon" href="../static/assets/images/icon.png" type="image/icon type">
+</head>
+
+<body>
+  <div class="parent">
+    <div class="child d-flex flex-column justify-content-center align-items-center" style="width: 32%; margin-top: 120px;">
+      <div class="d-flex">
+        <div class="d-flex">
+          <div class="p-2">
+            <div class="add-zero">
+              <input type="radio" name="type" id="zeros" value="zeros" onclick="changeType()" checked="checked">
+              <label for="zeros">Add Zero</label>
+            </div>
+          </div>
+        </div>
+        
+        <div class="d-flex">
+          <div class="p-2">
+            <div class="add-pole">
+              <input type="radio" name="type" id="poles" value="poles" onclick="changeType()">
+              <label for="poles">Add Pole</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <canvas id="zplanecanvas" width="300" height="300" style="border:1px solid #7c5052;"></canvas>
+      <div class="d-flex justify-content-between my-2">
+        <button class="btn btn-dark mx-1" onclick="deleteFreq()">Delete </button>
+        <button class="btn btn-dark mx-1" onclick="clearAll()">Clear </button>
+        <button class="btn btn-dark mx-1" onclick="save()">Save</button>
+      </div>
+      <div class="d-flex justify-content-between my-2">
+        <button class="btn btn-secondary mx-1 text-nowrap" data-bs-toggle="modal" data-bs-target="#myModal">Phase Correction</button>
+        <div id="list1" class="dropdown-check-list" tabindex="100">
+          <span class="anchor">Enable All Pass Filter</span>
+          <div id="filters" class="d-flex flex-column flex-wrap py-2 items "></div>
+        </div>
+      </div>
+    <div class="d-flex">
+      <form enctype="multipart/form-data" style="width: 110px;" method="post" id="form" >
+        <label for="signalFile" style = " font-size:medium;" class="btn btn-success my-2">Upload Signal</label>
+        <input type="file" id="signalFile" accept=".csv" class="btn btn-success" style="visibility:hidden;" />
+      </form>
+    </div>
+
+    </div>
+    <div class="child" style="width: 50%;">
+      <div id="myDiv" style="width: 720px;height: 372px;"></div>
+      <div id="realTimeSignal"  style="width: 720px;height: 372px;"></div>
+    </div>
+    <div class="clr"></div>
+  </div>
+  <div class="generate"> 
+    <div class="title">
+      <h4>Generate Signal</h4>
+    </div> 
+    <canvas id="myCanvas" width = "300" height = "150" style="border:1px solid #7c5052; border-radius: 20px; background:  linear-gradient(120deg, #b6898a, #815c5d); " ></canvas>
+  </div>
+    
+  <!-- Phase Correction Page -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+
+        <!--Header -->
+        <div class="modal-header header">
+          <h4 class="modal-title">Choose All Pass Filter </h4>
+        </div>
+
+        <!--  body -->
+        <div class="modal-body">
+          <div class="container">
+            <div class="row pt-5">
+              <div class="d-flex justify-content-center">
+              <div class="pe-2">
+                <label for="a">Choose a value:</label>
+                <select name="a" id="a-values" style="height: 36px;">
+                </select>
+              </div>
+              <div class="pe-2">
+                <button id="addfilter" class="btn btn-secondary p-2">Add Filter</button>
+              </div>
+              <div class="pe-5" id="addFilterLoader">
+              </div>
+              <div class="pe-2">
+                <label for="real">Real</label>
+                <input type="number" name="real" class="allpassfiltera" value="0" style="height: 36px;">
+              </div>
+             <div class="pe-2">
+              <label for="imaginary">Imaginary</label>
+              <input type="number" name="imaginary" class="allpassfiltera" value="0" style="height: 36px;">
+             </div>
+              <div class="pe-2">
+                <button id="addfiltertolibrary" class="btn btn-secondary p-2" disabled>Add to Library</button>
+              </div>
+              <div class="pe-2" id="addFilterToLibraryLoader">
+              </div>
+            </div>
+
+            </div>
+            <div class="row">
+              <div class="col-3 d-flex align-items-center">
+                <canvas id="allpasszplane" width="300" height="300" style="border:1px solid #7c5052;">
+                </canvas>
+              </div>
+              <div class="col-7 offset-1">
+                <div id="allpassfrequencyresponse"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--  footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../static/assets/js/main.js"></script>
+  <script src="../static/assets/js/allpassfilter.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,144 @@
+body {
+    background-color: #f1f1f1 !important;
+}
+.dropdown-check-list {
+    display: inline-block;
+    background-color: #815c5d;
+    text-align: center;
+    outline-style: outset;
+    color: white;
+}
+
+.dropdown-check-list .anchor {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    padding: 5px 50px 5px 10px;
+    border: 1px solid #b6898a;
+}
+
+.dropdown-check-list .anchor:after {
+    position: absolute;
+    content: "";
+    border-left: 2px solid rgb(255, 255, 255);
+    border-top: 2px solid rgb(255, 255, 255);
+    padding: 5px;
+    right: 10px;
+    top: 20%;
+    -moz-transform: rotate(-135deg);
+    -ms-transform: rotate(-135deg);
+    -o-transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+    transform: rotate(-135deg);
+}
+
+.dropdown-check-list .anchor:active:after {
+    right: 8px;
+    top: 21%;
+}
+
+.dropdown-check-list .items {
+    padding: 2px;
+    display: none !important;
+    margin: 0;
+    border: 1px solid #b6898a;
+    border-top: none;
+}
+
+.dropdown-check-list.visible .anchor {
+    color: #b6898a;
+}
+
+.dropdown-check-list.visible .items {
+    position: absolute !important;
+    background-color: #b6898a;
+    z-index: 2 !important;
+    width: 205px;
+    display: flex !important;
+}
+
+.btn{
+    font-size: medium;
+    background-color: #815c5d;
+    text-align: center;
+    outline-style: outset;
+}
+.btn:hover{
+    background-color: #b6898a;
+}
+
+.slider{
+    background-color: #815c5d;
+    text-align: center;
+    outline-style: outset;
+    font-size: medium;
+    color: white;
+    width: 200px;
+    height: 60px;
+}
+.slider:hover{
+    background-color: #b6898a;
+}
+
+.slider input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none !important;
+    background: #b6898a;
+    cursor: pointer;
+}
+
+.add-zero{
+    background-color: #815c5d;
+    text-align: center;
+    outline-style: outset;
+    font-size: medium;
+    color: white;
+    width: 120px;
+}
+
+.add-pole{
+    background-color: #815c5d;
+    text-align: center;
+    outline-style: outset;
+    font-size: medium;
+    color: white;
+    width: 120px;
+}
+.add-zero:hover{
+    background-color: #b6898a;
+}
+.add-pole:hover{
+    background-color: #b6898a;
+}
+.clr{
+    clear: both;
+}
+
+.parent{
+    width: 90%;
+    height: 90%;
+}
+
+.child{
+    float: left;
+    height: 450px;
+}
+
+.header {
+    justify-content: center;
+}
+
+.generate{
+    position:absolute;
+    right: 50px;
+    top: 80px;
+}
+.title{
+    background:  linear-gradient(120deg, #b6898a, #815c5d);
+    right: 50px;
+    top: 50px;
+    text-align: center;
+    outline-style: outset;
+    font-size: medium;
+    color: white;
+    width: 300px;
+}
